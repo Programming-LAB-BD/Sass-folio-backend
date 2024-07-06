@@ -38,7 +38,7 @@ module.exports = [
       "About Description can't be Empty. Please fill this AboutText input"
     )
     .isLength({ min: 700 })
-    .withMessage("About Description must be greater then 700 charecters.")
+    .withMessage("About Description must be greater than 700 charecters.")
     .trim(),
   body("address").trim(),
   body("phone").trim(),
@@ -48,6 +48,7 @@ module.exports = [
     .withMessage(
       "Contact Email can't be Empty. Please fill this ContactEmail input"
     )
+    .normalizeEmail()
     .isEmail()
     .withMessage("Please type a valid Email Address.")
     .trim(),

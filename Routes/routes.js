@@ -2,6 +2,7 @@ const route = require("express").Route();
 const HomeController = require("../Controllers/HomeController");
 const SiteRoute = require("./SiteRoute");
 const UserRoute = require("./UserRoute");
+const ServiceRoute = require("./ServiceRoute");
 
 const routes = [
   {
@@ -21,6 +22,10 @@ const routes = [
   {
     path: "/user",
     handler: UserRoute,
+  },
+  {
+    path: "/service",
+    handler: ServiceRoute,
   },
 ];
 

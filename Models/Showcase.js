@@ -72,37 +72,14 @@ const ShowcaseSchema = new Schema({
   ],
   services: [
     {
-      name: {
-        required: true,
-        type: String,
-        trim: true,
-      },
-      icon: {
-        required: true,
-        type: String,
-        trim: true,
-      },
-      description: {
-        required: true,
-        type: String,
-        minlength: 100,
-        trim: true,
-      },
+      type: Schema.Types.ObjectId,
+      ref: "Service",
     },
   ],
   portfolio: [
     {
-      screenShot: {
-        required: true,
-        type: String,
-        trim: true,
-      },
-      description: {
-        required: true,
-        type: String,
-        minlength: 100,
-        trim: true,
-      },
+      type: Schema.Types.ObjectId,
+      ref: "Portfolio",
     },
   ],
   address: {
@@ -117,6 +94,10 @@ const ShowcaseSchema = new Schema({
     required: true,
     type: String,
     trim: true,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 
