@@ -3,6 +3,7 @@ const HomeController = require("../Controllers/HomeController");
 const SiteRoute = require("./SiteRoute");
 const UserRoute = require("./UserRoute");
 const ServiceRoute = require("./ServiceRoute");
+const PortfolioRoute = require("./PortfolioRoute");
 
 const routes = [
   {
@@ -26,6 +27,10 @@ const routes = [
   {
     path: "/service",
     handler: ServiceRoute,
+  },
+  {
+    path: "/portfolio",
+    handler: PortfolioRoute,
   },
 ];
 

@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const PortfolioSchema = new Schema(
   {
     thumbnail: {
-      type: Srting,
+      type: String,
       trim: true,
       default: "",
     },

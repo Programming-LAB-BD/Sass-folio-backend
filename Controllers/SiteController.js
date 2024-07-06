@@ -1,4 +1,6 @@
 const Showcase = require("../Models/Showcase");
+const { validationResult } = require("express-validator");
+const validationErrorFormatter = require("../utils/validationErrorFormatter");
 
 exports.FetchSiteGetController = async (req, res, next) => {
   try {
@@ -13,6 +15,13 @@ exports.FetchSiteGetController = async (req, res, next) => {
 exports.CreateSitePostController = async (req, res, next) => {
   let { name, title, description, introduction, aboutText, contactEmail } =
     req.body;
+  let errors = validationResult(req).formatWith(validationErrorFormatter);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      error: errors.mapped(),
+    });
+  }
 
   try {
     let showcase = new Showcase({

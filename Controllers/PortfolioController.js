@@ -1,9 +1,9 @@
-const Service = require("../Models/Service");
+const Portfolio = require("../Models/Portfolio");
 const { validationResult } = require("express-validator");
 const validationErrorFormatter = require("../utils/validationErrorFormatter");
 
-exports.ServiceCreatePostController = async (req, res, next) => {
-  let { name, image, description } = req.body;
+exports.PortfolioCreatePostController = async (req, res, next) => {
+  let { description } = req.body;
   let errors = validationResult(req).formatWith(validationErrorFormatter);
 
   if (!errors.isEmpty()) {
@@ -13,19 +13,15 @@ exports.ServiceCreatePostController = async (req, res, next) => {
   }
 
   try {
-    let service = new Service({
-      name,
-      image,
-      description,
-    });
+    let portfolio = new Portfolio({ description });
 
-    let createdService = await service.save();
+    let createdPortfolio = await portfolio.save();
 
-    if (createdService) {
-      res.status(201).json(createdService);
+    if (createdPortfolio) {
+      res.status(201).json(createdPortfolio);
     } else {
       res.status(500).json({
-        message: "Creating Service Error Occurred.",
+        message: "Creating Site Error Occurred.",
       });
     }
   } catch (err) {
