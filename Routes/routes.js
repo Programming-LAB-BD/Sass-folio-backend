@@ -1,9 +1,10 @@
-const route = require("express").Route();
+const express = require("express");
 const HomeController = require("../Controllers/HomeController");
 const SiteRoute = require("./SiteRoute");
 const UserRoute = require("./UserRoute");
 const ServiceRoute = require("./ServiceRoute");
 const PortfolioRoute = require("./PortfolioRoute");
+const ApiRoutes = require("../Api/Routes/routes");
 
 const routes = [
   {
@@ -31,6 +32,10 @@ const routes = [
   {
     path: "/portfolio",
     handler: PortfolioRoute,
+  },
+  {
+    path: "/api",
+    handler: ApiRoutes,
   },
 ];
 

@@ -4,11 +4,13 @@ const UserSchema = new Schema({
   name: {
     required: true,
     type: String,
+    minlength: 6,
     trim: true,
   },
   username: {
     required: true,
     type: String,
+    minlength: 6,
     trim: true,
   },
   email: {

@@ -5,7 +5,11 @@ module.exports = [
   body("name")
     .not()
     .isEmpty()
-    .withMessage("Name can't be Empty. Please fill this Name input"),
+    .withMessage("Name can't be Empty. Please fill this Name input")
+    .isLength({
+      min: 6,
+    })
+    .withMessage("Name Must Be Greater Than 6 Characters"),
   body("username")
     .not()
     .isEmpty()
@@ -16,7 +20,11 @@ module.exports = [
         return Promise.reject("Username Already Used.");
       }
       return true;
-    }),
+    })
+    .isLength({
+      min: 6,
+    })
+    .withMessage("Username Must Be Greater Than 6 Characters"),
   body("email")
     .not()
     .isEmpty()
