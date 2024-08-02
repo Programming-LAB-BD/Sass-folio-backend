@@ -32,6 +32,36 @@ exports.CreateUserPostController = async (req, res, next) => {
       });
     }
   } catch (err) {
-    console.log(err);
+    next(err);
+  }
+};
+
+exports.LoginUserPostController = async (req, res, next) => {
+  let { email, password } = req.body;
+
+  try {
+    let user = await User.findOne({ email: email });
+
+    if (!user) {
+      return res.status(400).json({
+        message: "Wrong email or password.",
+      });
+    }
+
+    let matchedPassword = await bcrypt.compare(password, user.password);
+
+    if (!matchedPassword) {
+      return res.status(400).json({
+        message: "Wrong email or password.",
+      });
+    }
+
+    res.status(201).json({
+      message: "Successfully login.",
+      login: true,
+      data: user,
+    });
+  } catch (err) {
+    next(err);
   }
 };

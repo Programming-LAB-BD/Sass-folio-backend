@@ -4,8 +4,13 @@ const router = require("express").Router();
 const UserValidator = require("../Validators/UserValidator/UserValidator");
 
 // Import Controllers here
-const { CreateUserPostController } = require("../Controllers/UserController");
+const {
+  CreateUserPostController,
+  LoginUserPostController,
+} = require("../Controllers/UserController");
 
 router.post("/create", UserValidator, CreateUserPostController);
+
+router.post("/login", LoginUserPostController);
 
 module.exports = router;
