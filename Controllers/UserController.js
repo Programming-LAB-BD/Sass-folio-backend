@@ -1,7 +1,29 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const User = require("../Models/User");
 const { validationResult } = require("express-validator");
 const validationErrorFormatter = require("../utils/validationErrorFormatter");
+
+async function loginFunctionality(data, res, req) {
+  const jwtToken = jwt.sign(
+    {
+      id: data._id,
+    },
+    process.env.SECRET_KEY
+  );
+
+  res.cookie("saas-folio", jwtToken, {
+    maxAge: 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  });
+
+  res.status(201).json({
+    message: "Login successfully.",
+    logedIn: true,
+    jwtToken,
+  });
+  return;
+}
 
 exports.CreateUserPostController = async (req, res, next) => {
   let { name, username, email, password } = req.body;
@@ -25,7 +47,7 @@ exports.CreateUserPostController = async (req, res, next) => {
     let createdUser = await user.save();
 
     if (createdUser) {
-      res.status(201).json(createdUser);
+      loginFunctionality(createdUser, res, req);
     } else {
       res.status(400).json({
         error: "Creating User Error Occurred.",
@@ -56,11 +78,7 @@ exports.LoginUserPostController = async (req, res, next) => {
       });
     }
 
-    res.status(201).json({
-      message: "Successfully login.",
-      login: true,
-      data: user,
-    });
+    loginFunctionality(user, res, req);
   } catch (err) {
     next(err);
   }

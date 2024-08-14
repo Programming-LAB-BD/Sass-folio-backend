@@ -43,3 +43,13 @@ exports.findUsernameOnCreateUser = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.findProfileOnRedirectToDashboard = (req, res, next) => {
+  const cookie = req.headers.cookie;
+
+  if (cookie) {
+    console.log(cookie);
+  } else {
+    console.log("cookie not found!");
+  }
+};
