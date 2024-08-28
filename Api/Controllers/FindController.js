@@ -1,4 +1,5 @@
 const User = require("../../Models/User");
+const jwt = require("jsonwebtoken");
 
 exports.findEmailOnCreateUser = async (req, res, next) => {
   let { email } = req.body;
@@ -44,12 +45,26 @@ exports.findUsernameOnCreateUser = async (req, res, next) => {
   }
 };
 
-exports.findProfileOnRedirectToDashboard = (req, res, next) => {
-  const cookie = req.headers.cookie;
+exports.findProfileOnRedirectToDashboard = async (req, res, next) => {
+  const { token } = req.body;
 
-  if (cookie) {
-    console.log(cookie);
-  } else {
-    console.log("cookie not found!");
+  try {
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+
+    let profile = await User.findOne({ _id: decoded.id });
+
+    if (profile.showcase) {
+      res.status(200).json({
+        message: "Profile found.",
+        profile: true,
+      });
+    } else {
+      res.status(200).json({
+        message: "Profile not found.",
+        profile: false,
+      });
+    }
+  } catch (err) {
+    next(err);
   }
 };

@@ -12,17 +12,11 @@ async function loginFunctionality(data, res, req) {
     process.env.SECRET_KEY
   );
 
-  res.cookie("saas-folio", jwtToken, {
-    maxAge: 24 * 60 * 60 * 1000,
-    httpOnly: true,
-  });
-
   res.status(201).json({
     message: "Login successfully.",
     logedIn: true,
     jwtToken,
   });
-  return;
 }
 
 exports.CreateUserPostController = async (req, res, next) => {
