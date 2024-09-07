@@ -15,7 +15,6 @@ const ShowcaseSchema = new Schema({
   description: {
     required: true,
     type: String,
-    minlength: 50,
     maxlength: 500,
     trim: true,
   },

@@ -1,14 +1,17 @@
 const router = require("express").Router();
 
-const CreateSiteValidator = require("../Validators/CreateSiteValidators/CreateSiteValidator");
+const SiteValidator = require("../Validators/CreateSiteValidators/CreateSiteValidator");
 
 const {
-  FetchSiteGetController,
+  FetchSitePostController,
   CreateSitePostController,
+  UpdateSitePostController,
 } = require("../Controllers/SiteController");
 
-router.get("/", FetchSiteGetController);
+router.post("/", FetchSitePostController);
 
-router.post("/create", CreateSiteValidator, CreateSitePostController);
+router.post("/create", SiteValidator, CreateSitePostController);
+
+router.post("/update", SiteValidator, UpdateSitePostController);
 
 module.exports = router;

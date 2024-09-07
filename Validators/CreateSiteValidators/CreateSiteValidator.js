@@ -19,8 +19,8 @@ module.exports = [
     .withMessage(
       "Description can't be Empty. Please fill this Description input"
     )
-    .isLength({ min: 50, max: 500 })
-    .withMessage("Description must be 50-500 charecters.")
+    .isLength({ max: 500 })
+    .withMessage("Description can't be Greater than 500 characters.")
     .trim(),
   body("introduction")
     .not()
