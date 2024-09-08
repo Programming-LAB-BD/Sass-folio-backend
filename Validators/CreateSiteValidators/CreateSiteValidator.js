@@ -42,6 +42,11 @@ module.exports = [
     .trim(),
   body("address").trim(),
   body("phone").trim(),
+  body("facebook").trim(),
+  body("instagram").trim(),
+  body("twitter").trim(),
+  body("github").trim(),
+  body("linkedin").trim(),
   body("contactEmail")
     .not()
     .isEmpty()

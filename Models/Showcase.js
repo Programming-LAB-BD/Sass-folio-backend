@@ -35,20 +35,26 @@ const ShowcaseSchema = new Schema({
     maxlength: 1000,
     trim: true,
   },
-  socialLink: [
-    {
-      icon: {
-        required: true,
-        type: String,
-        trim: true,
-      },
-      link: {
-        required: true,
-        type: String,
-        trim: true,
-      },
-    },
-  ],
+  facebook: {
+    type: String,
+    trim: true,
+  },
+  instagram: {
+    type: String,
+    trim: true,
+  },
+  twitter: {
+    type: String,
+    trim: true,
+  },
+  github: {
+    type: String,
+    trim: true,
+  },
+  linkedin: {
+    type: String,
+    trim: true,
+  },
   aboutText: {
     required: true,
     type: String,
@@ -67,6 +73,11 @@ const ShowcaseSchema = new Schema({
         type: Number,
         trim: true,
       },
+      key: {
+        required: true,
+        type: String,
+        trim: true
+      }
     },
   ],
   services: [
