@@ -5,6 +5,7 @@ const UserRoute = require("./UserRoute");
 const ServiceRoute = require("./ServiceRoute");
 const PortfolioRoute = require("./PortfolioRoute");
 const ApiRoutes = require("../Api/Routes/routes");
+const UploadRoute = require("./UploadRoute");
 
 const routes = [
   {
@@ -36,6 +37,10 @@ const routes = [
   {
     path: "/api",
     handler: ApiRoutes,
+  },
+  {
+    path: "/upload",
+    handler: UploadRoute,
   },
 ];
 
