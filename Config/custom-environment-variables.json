@@ -3,5 +3,11 @@
   "db-password": "DB_PASSWORD",
   "db-app-name": "DB_APP_NAME",
   "db-name": "DB_NAME",
-  "port": "PORT"
+  "port": "PORT",
+  "api-key": "API_KEY",
+  "auth-domain": "AUTH_DOMAIN",
+  "project-id": "PROJECT_ID",
+  "storage-bucket": "STORAGE_BUCKET",
+  "messaging-sender-id": "MESSAGING_SENDER_ID",
+  "app-id": "APP_ID"
 }

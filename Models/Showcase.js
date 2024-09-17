@@ -21,12 +21,12 @@ const ShowcaseSchema = new Schema({
   logo: {
     type: String,
     trim: true,
-    default: "",
+    default: "logo/default-logo.png",
   },
   picture: {
     type: String,
     trim: true,
-    default: "",
+    default: "picture/default-picture.png",
   },
   introduction: {
     required: true,
@@ -76,8 +76,8 @@ const ShowcaseSchema = new Schema({
       key: {
         required: true,
         type: String,
-        trim: true
-      }
+        trim: true,
+      },
     },
   ],
   services: [
