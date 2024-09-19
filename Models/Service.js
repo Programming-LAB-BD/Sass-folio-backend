@@ -6,7 +6,7 @@ const ServiceSchema = new Schema({
     type: String,
     trim: true,
   },
-  image: {
+  icon: {
     required: true,
     type: String,
     trim: true,
@@ -14,7 +14,7 @@ const ServiceSchema = new Schema({
   description: {
     required: true,
     type: String,
-    minlength: 100,
+    minlength: 50,
     trim: true,
   },
   showcase: {

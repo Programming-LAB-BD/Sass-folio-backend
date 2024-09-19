@@ -4,6 +4,32 @@ const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const validationErrorFormatter = require("../utils/validationErrorFormatter");
 
+exports.GetSitePostController = async (req, res, next) => {
+  let username = req.body.username;
+
+  try {
+    let user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(200).json({
+        message: "User not found.",
+      });
+    }
+
+    let showcase = await Showcase.findOne({ _id: user.showcase });
+
+    if (!showcase) {
+      return res.status(200).json({
+        message: "Site not created yet.",
+      });
+    }
+
+    res.status(201).json(showcase);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 exports.FetchSitePostController = async (req, res, next) => {
   let token = req.body.token;
   try {

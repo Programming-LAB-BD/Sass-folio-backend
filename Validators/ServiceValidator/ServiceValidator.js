@@ -6,10 +6,10 @@ module.exports = [
     .isEmpty()
     .withMessage("Name can't be Empty. Please fill this Name input")
     .trim(),
-  body("image")
+  body("icon")
     .not()
     .isEmpty()
-    .withMessage("Image/Icon can't be Empty. Please fill this Image/Icon input")
+    .withMessage("Icon can't be Empty. Please fill this Icon input")
     .trim(),
   body("description")
     .not()
@@ -17,7 +17,7 @@ module.exports = [
     .withMessage(
       "Description can't be Empty. Please fill this Description input"
     )
-    .isLength({ min: 100 })
-    .withMessage("Description must be greater than 100 charecters")
+    .isLength({ min: 50 })
+    .withMessage("Description must be greater than 50 charecters")
     .trim(),
 ];

@@ -4,8 +4,17 @@ const router = require("express").Router();
 const upload = require("../Middlewares/UploadMiddleware");
 
 // Import Controllers here
-const { UploadLogoPostController } = require("../Controllers/UploadController");
+const {
+  UploadLogoPostController,
+  UploadProfilePicturePostController,
+} = require("../Controllers/UploadController");
 
 router.post("/logo", upload.single("logo"), UploadLogoPostController);
+
+router.post(
+  "/profile",
+  upload.single("picture"),
+  UploadProfilePicturePostController
+);
 
 module.exports = router;

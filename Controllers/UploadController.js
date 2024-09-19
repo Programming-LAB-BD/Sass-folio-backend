@@ -70,3 +70,63 @@ exports.UploadLogoPostController = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.UploadProfilePicturePostController = async (req, res, next) => {
+  const { token } = req.body;
+
+  if (!token) {
+    return res.json({
+      message: "Authentication Faild.",
+    });
+  }
+
+  const decoded = jwt.verify(token, process.env.SECRET_KEY);
+
+  const metadata = {
+    contentType: req.file.mimetype,
+  };
+
+  const filename =
+    req.file.fieldname + "-" + Date.now() + "-" + req.file.originalname;
+
+  try {
+    // Creating Storage Reference here
+    const storageRef = await ref(storage, `${req.file.fieldname}/${filename}`);
+
+    const prevLogo = await Showcase.findOne({ user: decoded.id });
+
+    // Chack logo is it default or not then delete it from cloud storage.
+    if (prevLogo.picture !== "picture/default-picture.png") {
+      await deleteObject(ref(storage, prevLogo.picture));
+    }
+
+    // Uploading File to Firebase Database here
+    const uploadFile = await uploadBytes(storageRef, req.file.buffer, metadata);
+
+    console.log(uploadFile);
+
+    // Update database here
+    let updateditem = await Showcase.findOneAndUpdate(
+      { user: decoded.id },
+      {
+        $set: {
+          picture: uploadFile.metadata.fullPath,
+        },
+      },
+      { new: true }
+    );
+
+    if (updateditem) {
+      res.status(200).json({
+        message: "Picture Upload Successfully.",
+        logo: updateditem.logo,
+      });
+    } else {
+      res.status(500).json({
+        message: "Picture Upload Error Occurred.",
+      });
+    }
+  } catch (err) {
+    next(err);
+  }
+};
