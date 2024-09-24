@@ -5,9 +5,15 @@ const PortfolioValidator = require("../Validators/PortfolioValidator/PortfolioVa
 
 // Import Controller here
 const {
+  PortfolioFetchPostController,
   PortfolioCreatePostController,
+  PortfolioDeletePostController,
 } = require("../Controllers/PortfolioController");
 
+router.post("/", PortfolioFetchPostController);
+
 router.post("/create", PortfolioValidator, PortfolioCreatePostController);
+
+router.post("/delete", PortfolioDeletePostController);
 
 module.exports = router;

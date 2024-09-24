@@ -2,10 +2,14 @@ const { Schema, model } = require("mongoose");
 
 const PortfolioSchema = new Schema(
   {
+    name: {
+      required: true,
+      type: String,
+      trim: true,
+    },
     thumbnail: {
       type: String,
       trim: true,
-      default: "",
     },
     screenShot: [
       {
