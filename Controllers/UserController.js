@@ -59,7 +59,7 @@ exports.LoginUserPostController = async (req, res, next) => {
     let user = await User.findOne({ email: email });
 
     if (!user) {
-      return res.status(400).json({
+      return res.status(200).json({
         message: "Wrong email or password.",
       });
     }
@@ -67,7 +67,7 @@ exports.LoginUserPostController = async (req, res, next) => {
     let matchedPassword = await bcrypt.compare(password, user.password);
 
     if (!matchedPassword) {
-      return res.status(400).json({
+      return res.status(200).json({
         message: "Wrong email or password.",
       });
     }
