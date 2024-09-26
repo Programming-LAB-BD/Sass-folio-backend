@@ -8,9 +8,9 @@ const middlewares = [
   express.urlencoded({ extended: true }),
   express.json(),
   cors({
-    origin: "http://localhost:5173", // ক্লায়েন্টের origin
+    origin: "https://saas-folio.netlify.app",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true, // যদি credentials প্রয়োজন হয়
+    credentials: true,
   }),
 ];
 
