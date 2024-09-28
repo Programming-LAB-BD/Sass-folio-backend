@@ -56,7 +56,7 @@ exports.findProfileOnRedirectToDashboard = async (req, res, next) => {
     if (profile.showcase) {
       res.status(200).json({
         message: "Profile found.",
-        profile: true,
+        profile,
       });
     } else {
       res.status(200).json({
